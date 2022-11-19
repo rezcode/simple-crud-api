@@ -6,7 +6,6 @@ const port = process.env.PORT || 8000;
 const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
-// const path = require("path");
 
 app.use(helmet());
 
