@@ -6,6 +6,7 @@ const port = process.env.PORT || 8000;
 const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
+const path = require("path");
 
 console.log(process.env.PORT);
 
@@ -18,6 +19,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
 // app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "images")));
 
 const authRoute = require("./routes/auth");
 const productsRoute = require("./routes/products");
