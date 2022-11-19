@@ -40,7 +40,7 @@ const uploadProductImage = (req, res, next) => {
   const uploadSingle = upload.single("img");
   uploadSingle(req, res, (err) => {
     if (err) {
-      return res.status(400).send(err);
+      return res.status(403).send(err);
     } else {
       next();
     }
