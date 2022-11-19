@@ -8,8 +8,6 @@ const helmet = require("helmet");
 const cors = require("cors");
 // const path = require("path");
 
-console.log(process.env.PORT);
-
 app.use(helmet());
 
 app.use(cors());
