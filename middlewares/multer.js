@@ -22,26 +22,32 @@ const upload = multer({
     fileSize: 100000,
   },
   fileFilter: (req, file, cb) => {
-    const filetypes = /jpg|png/;
-    const extname = filetypes.test(
-      path.extname(file.originalname).toLowerCase()
-    );
-    const mimetype = filetypes.test(file.mimetype);
-
-    if (mimetype && extname) {
-      return cb(null, true);
+    let ext = path.extname(file.originalname);
+    if (ext !== ".jpg" && ext !== ".png") {
+      cb(new Error("file format .jpg .jpeg .png .webp only"), false);
     } else {
-      cb("file format .jpg .png only!", false);
+      cb(null, true);
     }
   },
 });
 
 const uploadProductImage = (req, res, next) => {
+  console.log("sfdsdf");
   const uploadSingle = upload.single("img");
   uploadSingle(req, res, (err) => {
+    // if (err instanceof multer.MulterError) {
+    //   // A Multer error occurred when uploading.
+    // } else if (err) {
+    //   // An unknown error occurred when uploading.
+
+    // }
+    console.log("sfdsdf");
     if (err) {
-      return res.status(403).send(err);
+      console.log(err);
+      next();
+      return res.status(403).send(err.message);
     } else {
+      console.log("ghjgffhg");
       next();
     }
   });
