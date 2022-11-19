@@ -2,10 +2,12 @@ const express = require("express");
 const dotenv = require("dotenv");
 dotenv.config();
 const app = express();
-const port = 8000 || process.env.PORT;
+const port = process.env.PORT || 8000;
 const bodyparser = require("body-parser");
 const helmet = require("helmet");
 const cors = require("cors");
+
+console.log(process.env.PORT);
 
 app.use(helmet());
 
